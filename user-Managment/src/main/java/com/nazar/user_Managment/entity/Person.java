@@ -13,7 +13,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 @Entity //say it to do smth with hibernate
 @Table(name = "persons")
-public class Person {	
+//TODO user lombok for getters and setters
+public class Person {
 	public Person(Long id, String firstName, String lastName, String email, int age, Role role) {
 		this.id = id;
 		this.firstName = firstName;
@@ -73,24 +74,24 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	@Pattern(regexp = "^[a-zA-Z]{3,}$", message = "First name must contain only letters and have at least 3 characters")
 	private String firstName;
-	
+
 	@Pattern(regexp = "^[a-zA-Z]{3,}$", message = "Last name must contain only letters and have at least 3 characters")
 	@Column(nullable = false)
 	private String lastName;
-	
+
 	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email format")
 	@Column(nullable = false)
 	private String email;
-	
+
 	@Digits(integer = 2, fraction = 0, message = "Age must be a number")
 	@Min(value = 5, message = "Age must be at least 5")
 	@Column(nullable = false)
 	private int age;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "role_id" , nullable = false)
 	private Role role;
@@ -98,6 +99,5 @@ public class Person {
 	public void addRole(Role role) {
 		this.role = role; // Set the role for this person
 	    role.getPersons().add(this); // Add this person to the set of persons in the role
-	}	
+	}
 }
-	

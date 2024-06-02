@@ -5,7 +5,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class UserManagmentApplicationTests {
-
+//TODO Could be done later
+//	TODO add Integration tests with sql scripts before and after each test
+//	TODO ideally use test containers
 	@Test
 	void contextLoads() {
 	}

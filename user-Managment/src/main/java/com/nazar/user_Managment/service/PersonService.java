@@ -11,6 +11,7 @@ import com.nazar.user_Managment.repository.PersonsRepository;
 
 @Service
 public class PersonService {
+//TODO fix type perons
 	private final PersonsRepository peronsRepository;
 
 	public PersonService(PersonsRepository peronsRepository) {
@@ -21,13 +22,14 @@ public class PersonService {
 	public Optional<Person> getPerson(Long id) {
 		return peronsRepository.findById(id);
 	}
-	
+
 	//видалити (за id наприклад)
+	//TODO Transactional could be moved on class level and override with @Transactional(readOnly = true) on readOnly methods
 	@Transactional
 	public void removePerson(Long id) {
 		peronsRepository.deleteById(id);
 	}
-	
+
 	//getAll
 	@Transactional(readOnly = true)
 	public List<Person> getAllPersons() {
@@ -45,5 +47,5 @@ public class PersonService {
             peronsRepository.save(person);
             return person;
         });
-    } 
+    }
 }
